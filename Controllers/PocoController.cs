@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace AspNetCoreControllersActionsExamples.Controllers
 {
-    public class PocoController : Controller
+    public class PocoController 
     {
         // GET: /<controller>/
         //public IActionResult Index()
@@ -31,6 +31,19 @@ namespace AspNetCoreControllersActionsExamples.Controllers
                         new ModelStateDictionary())
                 {
                     Model = $"This is a POCO controller"
+                }
+            };
+        }
+
+        [ControllerContext]
+        public ControllerContext ControllerContext { get; set; }
+
+        public ViewResult Headers()
+        {
+            return new ViewResult() {
+                ViewName= "DictionaryResult",
+                ViewData=new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary()) {
+                    Model = ControllerContext.HttpContext.Request.Headers.ToDictionary(kvp => kvp.Key, kvp=>kvp.Value.First())
                 }
             };
         }
