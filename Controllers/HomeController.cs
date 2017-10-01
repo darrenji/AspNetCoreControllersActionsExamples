@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,9 +27,19 @@ namespace AspNetCoreControllersActionsExamples.Controllers
 
         
         //使用方法参数接受数据
-        public ViewResult ReceiveForm(string name, string city)
+        //public ViewResult ReceiveForm(string name, string city)
+        //{
+        //    return View("Result", $"{name} lives in {city}");
+        //}
+
+
+        //使用HttpResonse返回给前端数据
+        public void ReceiveForm(string name, string city)
         {
-            return View("Result", $"{name} lives in {city}");
+            Response.StatusCode = 200;
+            Response.ContentType = "text/html";
+            byte[] content = Encoding.ASCII.GetBytes($"<html><body>{name} lives in {city}</body></html>");
+            Response.Body.WriteAsync(content, 0, content.Length);
         }
     }
 }
