@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,12 +12,30 @@ namespace AspNetCoreControllersActionsExamples.Controllers
     public class ExampleController : Controller
     {
         // GET: /<controller>/
-        public IActionResult Index()
-        {
-            ViewBag.Message = "Hello";
+        //public IActionResult Index()
+        //{
+        //    ViewBag.Message = "Hello";
 
-            ViewBag.Date = DateTime.Now;
-            return View(DateTime.Now);
+        //    ViewBag.Date = DateTime.Now;
+        //    return View(DateTime.Now);
+        //}
+
+        //public JsonResult Index()
+        //{
+        //    return Json(new[] { "Alice", "Bob","Joe"});
+        //}
+
+
+        //public ObjectResult Index()
+        //{
+        //    return Ok(new string[] { "Alice", "Bob", "Joe"});
+        //}
+
+
+        public StatusCodeResult Index()
+        {
+            //return StatusCode(StatusCodes.Status404NotFound);
+            return NotFound();
         }
 
         public ViewResult Result()
