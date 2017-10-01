@@ -45,12 +45,19 @@ namespace AspNetCoreControllersActionsExamples.Controllers
 
 
         //使用自定义的IActionResult返回给前端数据
-        public IActionResult ReceiveForm(string name, string city)
+        //public IActionResult ReceiveForm(string name, string city)
+        //{
+        //    return new CustomHtmlResult
+        //    {
+        //        Content = $"{name} lives in {city}"
+        //    };
+        //}
+
+        
+        //最正常的写法
+        public ViewResult ReceiveForm(string name, string city)
         {
-            return new CustomHtmlResult
-            {
-                Content = $"{name} lives in {city}"
-            };
+            return View("Result", $"{name} lives in {city}");
         }
     }
 }
