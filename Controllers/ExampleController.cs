@@ -24,5 +24,24 @@ namespace AspNetCoreControllersActionsExamples.Controllers
             //把字符串转换成对象传递给前端视图
             return View((object)"Hello World");
         }
+
+        //使用字符串转向
+        //public RedirectResult Redirect()
+        //{
+        //    return RedirectPermanent("/Example/Index");
+        //}
+
+
+        //转向到路由
+        //public RedirectToRouteResult Redirect()
+        //{
+        //    return RedirectToRoute(new { controller="Example",action="Index", ID="MyID"});
+        //}
+
+        //转向到Action
+        public RedirectToActionResult Redirect()
+        {
+            return RedirectToAction("Index");
+        }
     }
 }

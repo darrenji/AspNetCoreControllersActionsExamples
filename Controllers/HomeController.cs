@@ -55,8 +55,25 @@ namespace AspNetCoreControllersActionsExamples.Controllers
 
         
         //最正常的写法
-        public ViewResult ReceiveForm(string name, string city)
+        //public ViewResult ReceiveForm(string name, string city)
+        //{
+        //    return View("Result", $"{name} lives in {city}");
+        //}
+
+        
+        //所谓的Post/Redirect/Get模式
+        [HttpPost]
+        public RedirectToActionResult ReceiveForm(string name, string city)
         {
+            TempData["name"] = name;
+            TempData["city"] = city;
+            return RedirectToAction(nameof(Data));
+        }
+
+        public ViewResult Data()
+        {
+            string name = TempData["name"] as string;
+            string city = TempData["city"] as string;
             return View("Result", $"{name} lives in {city}");
         }
     }
